@@ -15,14 +15,15 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = ">=3.9"
-cryptography = ">=40,<44"
-snowflake-sqlalchemy = "~=1.6.1"
-snowflake-connector-python = { version = "<4.0.0", extras = ["secure-local-storage"] }
+python = ">=3.9,!=3.9.0,!=3.9.1"
+certifi = "2025.6.15"  # See https://github.com/certifi/python-certifi/issues/349
+cryptography = ">=40"
+snowflake-sqlalchemy = "==1.7.5"
+snowflake-connector-python = { version = "~=3.15", extras = ["secure-local-storage"] }
 sqlalchemy = "~=2.0.31"
 
 [tool.poetry.dependencies.singer-sdk]
-version = "~=0.41.0"
+version = "~=0.47.0"
 
 [tool.poetry.group.dev.dependencies]
 coverage = ">=7.2.7"
@@ -30,7 +31,7 @@ pytest = ">=7.4.3"
 pytest-xdist = ">=3.3.1"
 
 [tool.poetry.group.dev.dependencies.singer-sdk]
-version="~=0.41.0"
+version = "*"
 extras = ["testing"]
 
 [tool.ruff]
@@ -40,9 +41,8 @@ target-version = "py39"
 
 [tool.ruff.lint]
 ignore = [
-    "ANN101",  # missing-type-self
-    "ANN102",  # missing-type-cls
     "ANN201",
+    "COM812",
     "TD",
     "D",
     "FIX",
